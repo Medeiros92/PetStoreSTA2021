@@ -43,4 +43,22 @@ public class Pet {
                 .body("tags.name", contains("sta"))
         ;
     }
+
+    @Test
+    private void consultarPet(){
+
+        String petId = "1992051692";
+
+        given()
+                .contentType("application/json")
+                .log().all()
+        .when()
+                .get(uri+"/"+petId)
+        .then()
+                .statusCode(200)
+                .log().all()
+                .body("name", is("Rick"))
+                .body("category.name", is("dog"))
+        ;
+    }
 }
