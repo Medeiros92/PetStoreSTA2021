@@ -7,7 +7,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.contains;
 
 public class Pet {
 
@@ -36,6 +38,9 @@ public class Pet {
                 .log().all()
                 .statusCode(200)
                 .body("name", is("Rick"))
-                .body("status", is("available"));
+                .body("status", is("available"))
+                .body("category.name", is("dog"))
+                .body("tags.name", contains("sta"))
+        ;
     }
 }
